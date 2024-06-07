@@ -1,7 +1,5 @@
-import { Component, computed, signal } from '@angular/core';
-import { DUMMY_USERS } from '../db/dummy-users';
+import { Component, Input, computed, input } from '@angular/core';
 
-const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length)
 
 @Component({
   selector: 'app-user',
@@ -11,16 +9,25 @@ const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length)
   styleUrl: './user.component.css'
 })
 export class UserComponent {
-  selectedUser = signal(DUMMY_USERS[randomIndex]);
-  imagePath = computed(() => `users/${this.selectedUser().avatar}`)
+  // essa é a propriedade que armazena o signal e que deve ser executada como função no html para obter o valor mais recente dela
+  // selectedUser = signal(DUMMY_USERS[randomIndex]);
+  // imagePath = computed(() => `users/${this.selectedUser().avatar}`)
+
+
+  // @Input({ required: true }) avatar!: string;
+  // @Input({ required: true }) name!: string
 
   // get imagePath(){
-  //   return `users/${this.selectedUser().avatar}`
+  //   return `users/${this.avatar}`
   // }
 
+  avatar = input.required(); // usa signal somente para leitura e nao podem ser alterados
+  name =  input.required();
+
+  imagePath = computed(() => `users/${this.avatar()}`)
+
   onSelectUser(){
-    const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length)
-    this.selectedUser.set(DUMMY_USERS[randomIndex])
+
   }
 
 }
