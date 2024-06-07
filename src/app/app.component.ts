@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { UserComponent } from "./user/user.component";
 import { HeaderComponent } from "./header/header.component";
+import { DUMMY_USERS } from './db/dummy-users';
 
 @Component({
     selector: 'app-root',
@@ -12,4 +13,6 @@ import { HeaderComponent } from "./header/header.component";
 })
 export class AppComponent {
   title = 'easytask';
+  users = DUMMY_USERS;
+
 }
