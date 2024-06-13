@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output, computed, output } from '@angular/core';
+import { IUser } from '../model/user';
 
 
 @Component({
@@ -9,22 +10,16 @@ import { Component, EventEmitter, Input, Output, computed, output } from '@angul
   styleUrl: './user.component.css'
 })
 export class UserComponent {
-  // essa é a propriedade que armazena o signal e que deve ser executada como função no html para obter o valor mais recente dela
-  // selectedUser = signal(DUMMY_USERS[randomIndex]);
-  // imagePath = computed(() => `users/${this.selectedUser().avatar}`)
-
-  @Input({ required: true }) id!: string;
-  @Input({ required: true }) avatar!: string;
-  @Input({ required: true }) name!: string
-  // @Output() select = new EventEmitter();
-  select = output<string>(); // não cria signal de saída, apenas um evento personalizado que pode ser emitido, ele existe para o caso de estar sendo usado o input e não ser necessário usar o decorador @Output e pelo código ficar mais enxuto
+  @Input({ required: true }) user!: IUser;
+  @Input({ required: true }) selected!: boolean;
+  @Output() select = new EventEmitter<string>();
 
   get imagePath(){
-    return `users/${this.avatar}`
+    return `users/${this.user.avatar}`
   }
 
   onSelectUser(){
-    this.select.emit(this.id);
+    this.select.emit(this.user.id);
 
   }
 
