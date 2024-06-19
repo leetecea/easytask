@@ -7,3 +7,8 @@ export interface ITask {
   dueDate: string
 }
 
+export interface INewTask {
+  title: string,
+  summary: string,
+  dueDate: string
+}

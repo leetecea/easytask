@@ -1,8 +1,11 @@
+@if (isAddTaskModalVisible) {
+  <app-new-task (cancel)="handleModalAddTask()" (add)="onAddTask($event)"/>
+}
 <section id="tasks">
   <header>
     <h2>Tarefas de {{ name }}</h2>
     <menu>
-      <button (click)="showModal()">Add Tarefa</button>
+      <button (click)="handleModalAddTask()">Add Tarefa</button>
     </menu>
   </header>
 
