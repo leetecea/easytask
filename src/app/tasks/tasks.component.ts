@@ -3,6 +3,7 @@ import { TaskComponent } from "../task/task.component";
 import { INewTask, ITask } from '../model/task';
 import { DUMMY_TASKS } from '../db/dummy-tasks'
 import { NewTaskComponent } from "../new-task/new-task.component";
+import { TasksService } from './tasks.service';
 
 @Component({
     selector: 'app-tasks',
@@ -14,32 +15,22 @@ import { NewTaskComponent } from "../new-task/new-task.component";
 export class TasksComponent {
   @Input({ required: true }) userId!: string;
   @Input({ required: true }) name?: string; // pode tipar também como string | undefined e tirar o ? do name
-  tasks: ITask[] = DUMMY_TASKS;
+
   isAddTaskModalVisible = false;
 
+  constructor(private tasksService: TasksService){}
+
   get selectedUserTasks(){
-    return this.tasks.filter(task => task.userId === this.userId)
+   return this.tasksService.getUserTasks(this.userId)
   }
 
-  onCompleteTask(taskId: string){
-    this.tasks = this.tasks.filter(task => task.id !== taskId);
+  onStartAddTask(){
+    this.isAddTaskModalVisible = true;
   }
 
-  handleModalAddTask(){
-    this.isAddTaskModalVisible = !this.isAddTaskModalVisible;
-  }
 
-  onAddTask(task: INewTask){
-    this.tasks.unshift({ // unshift adiciona a task no começo do array
-      id: new Date().getTime().toString(),
-      userId: this.userId,
-      title: task.title,
-      summary: task.summary,
-      dueDate: task.dueDate,
-
-    })
+  onCloseAddTask(){
     this.isAddTaskModalVisible = false;
-    // this.tasks = [...this.tasks, task]
-
   }
+
 }
