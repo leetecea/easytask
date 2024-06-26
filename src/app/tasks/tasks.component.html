@@ -1,5 +1,5 @@
 @if (isAddTaskModalVisible) {
-  <app-new-task [userId]="userId" (cancel)="handleModalAddTask()" (add)="onAddTask($event)"/>
+  <app-new-task [userId]="userId" (close)="isAddTaskModalVisible()"/>
 }
 <section id="tasks">
   <header>

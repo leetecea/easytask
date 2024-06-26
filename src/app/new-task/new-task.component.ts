@@ -12,9 +12,6 @@ export class NewTaskComponent {
   @Input({ required: true}) userId!: string;
   @Output() close = new EventEmitter<void>();
 
-  constructor(
-    private tasksService: TasksService
-  ){}
 // ou pode usar: private tasksService = inject(TasksService)
   newTask = {
     enteredTitle:'',
