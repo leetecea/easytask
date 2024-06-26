@@ -23,13 +23,15 @@ export class TasksComponent {
   onCompleteTask(taskId: string){
   }
 
-  handleModalAddTask(){
-    this.isAddTaskModalVisible = !this.isAddTaskModalVisible;
+  onStartAddTask(){
+    this.isAddTaskModalVisible = true;
   }
+
 
   onAddTask(task: INewTask){
 
     this.isAddTaskModalVisible = false;
 
   }
+
 }

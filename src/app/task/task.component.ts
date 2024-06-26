@@ -1,7 +1,8 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { ITask } from '../model/task';
 import { registerLocaleData } from '@angular/common';
 import localePT from '@angular/common/locales/pt';
+import { TasksService } from '../tasks/tasks.service';
 registerLocaleData(localePT);
 
 @Component({
@@ -12,10 +13,11 @@ registerLocaleData(localePT);
 export class TaskComponent {
 
   @Input({required: true }) task!: ITask;
-  @Output() taskComplete = new EventEmitter<string>();
+
+  private tasksService = inject(TasksService);
 
   onCompleteTask(){
-    this.taskComplete.emit(this.task.id);
+    this.tasksService.removeTask(this.task.id)
   }
 
 }
