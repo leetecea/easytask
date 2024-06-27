@@ -20,18 +20,12 @@ export class TasksComponent {
     return this.tasksService.getUserTasks(this.userId)
   }
 
-  onCompleteTask(taskId: string){
-  }
-
   onStartAddTask(){
     this.isAddTaskModalVisible = true;
   }
 
-
-  onAddTask(task: INewTask){
-
+  onCloseAddTask(){
     this.isAddTaskModalVisible = false;
-
   }
 
 }

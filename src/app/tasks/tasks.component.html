@@ -1,5 +1,5 @@
 @if (isAddTaskModalVisible) {
-  <app-new-task [userId]="userId" (close)="isAddTaskModalVisible()"/>
+  <app-new-task [userId]="userId" (close)="onCloseAddTask()"/>
 }
 <section id="tasks">
   <header>
